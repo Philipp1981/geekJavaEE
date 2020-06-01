@@ -1,0 +1,67 @@
+package ru.geekbrains.servlet;
+
+
+import javax.servlet.*;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.Serializable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@WebServlet(name = "FirstServlet", urlPatterns = "/first_servlet")
+public class FirstServlet implements Servlet, Serializable {
+
+    private static Logger logger = LoggerFactory.getLogger(FirstServlet.class);
+
+
+    public transient ServletConfig config;
+
+    public ServletConfig getServletConfig() {
+        return this.config;
+    }
+
+    @Override
+    public void service(ServletRequest servletRequest, ServletResponse servletResponse) throws ServletException, IOException {
+        logger.info("New request");
+
+        servletRequest.setAttribute("headerText", "FirstHTTPServlet");
+        config.getServletContext().getRequestDispatcher("/header").include(servletRequest, servletResponse);
+    }
+
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+        logger.info("Servlet created");
+        this.config=config;
+    }
+
+
+
+    @Override
+    public String getServletInfo() {
+        return "Our first servlet";
+    }
+
+    @Override
+    public void destroy() {
+        logger.info("Servlet destroyed");
+    }
+
+
+
+//
+//    @Override
+//    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        logger.info("New GET request");
+//
+//        resp.getWriter().printf("<h1>New GET request</h1>");
+//    }
+//
+//    @Override
+//    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        logger.info("New POST request");
+//
+//        resp.getWriter().printf("<h1>New POST request</h1>");
+//    }
+}
