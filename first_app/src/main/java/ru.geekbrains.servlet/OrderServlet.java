@@ -17,13 +17,12 @@ public class OrderServlet extends HttpServlet {
         resp.getWriter().println("<h1>Order</h1>");
 
         resp.getWriter().println("<br>");
-        resp.getWriter().printf("<a href=main/*>Main</a>");
+        resp.getWriter().printf("<a href=" + "main>Main</a>");
         resp.getWriter().println("<br>");
-        resp.getWriter().printf("<a href=catalog/*>Catalog</a>");
+        resp.getWriter().printf("<a href=" + "catalog>Catalog</a>");
         resp.getWriter().println("<br>");
-        resp.getWriter().printf("<a href=product/*>Product</a>");
+        resp.getWriter().printf("<a href=" + "product>Product</a>");
         resp.getWriter().println("<br>");
-        resp.getWriter().printf("<a href=cart/*>Cart</a>");
- //       resp.getWriter().printf("<a href=order/*>Order</a>");
+        resp.getWriter().printf("<a href=" + "cart>Cart</a>");
     }
 }
