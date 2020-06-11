@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>first_app</module>
+        <module>todo-jsp</module>
     </modules>
     <packaging>pom</packaging>
 

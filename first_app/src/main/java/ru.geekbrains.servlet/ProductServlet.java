@@ -13,17 +13,31 @@ public class ProductServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.setContentType("text/html");
+        resp.setCharacterEncoding("UTF-8");
+
+
+
 
         resp.getWriter().println("<h1>Product</h1>");
+        resp.getWriter().println("<br>");
+
+        resp.getWriter().printf("<a href=" + "main>Main</a>");
 
         resp.getWriter().println("<br>");
-        resp.getWriter().printf("<a href=main/*>Main</a>");
+
+        resp.getWriter().printf("<a href=" + "catalog>Catalog</a>");
+//        resp.getWriter().printf("<a href=/cat>Catalog</a>");
+//        if(req.getServletPath().equals("cat")) {
+//            getServletContext().getRequestDispatcher("127.0.0.1:8812/todo-jsp").forward(req, resp);
+//        }
+
         resp.getWriter().println("<br>");
-        resp.getWriter().printf("<a href=catalog/*>Catalog</a>");
- //       resp.getWriter().printf("<a href=product/*>Product</a>");
+
+        resp.getWriter().printf("<a href=" + "cart>Cart</a>");
+
         resp.getWriter().println("<br>");
-        resp.getWriter().printf("<a href=cart/*>Cart</a>");
-        resp.getWriter().println("<br>");
-        resp.getWriter().printf("<a href=order/*>Order</a>");
+
+        resp.getWriter().printf("<a href=" + "order>Order</a>");
     }
 }
