@@ -1,0 +1,9 @@
+controllers\TodoController.class
+persist\ToDoRepository.class
+controllers\CategoryController.class
+persist\ProductRepository.class
+persist\ToDo.class
+persist\Product.class
+persist\Category.class
+persist\CategoryRepository.class
+controllers\ProductController.class

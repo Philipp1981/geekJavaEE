@@ -3,6 +3,7 @@
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/first_app" />
+    <file type="web" url="file://$PROJECT_DIR$/todo-jsf" />
     <file type="web" url="file://$PROJECT_DIR$/todo-jsp" />
   </component>
   <component name="JavaScriptSettings">

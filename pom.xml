@@ -10,6 +10,7 @@
     <modules>
         <module>first_app</module>
         <module>todo-jsp</module>
+        <module>todo-jsf</module>
     </modules>
     <packaging>pom</packaging>
 
