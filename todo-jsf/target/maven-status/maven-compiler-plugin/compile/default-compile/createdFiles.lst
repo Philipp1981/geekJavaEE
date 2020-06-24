@@ -1,9 +1,13 @@
+controllers\OrderController.class
+persist\Product.class
+persist\Order.class
 controllers\TodoController.class
 persist\ToDoRepository.class
 controllers\CategoryController.class
 persist\ProductRepository.class
 persist\ToDo.class
-persist\Product.class
+persist\Order$Status.class
 persist\Category.class
 persist\CategoryRepository.class
 controllers\ProductController.class
+persist\OrderRepository.class

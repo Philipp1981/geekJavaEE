@@ -8,7 +8,13 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
 import javax.servlet.ServletContext;
+import javax.transaction.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,98 +27,78 @@ public class ToDoRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(ToDoRepository.class);
 
+    @PersistenceContext(unitName="ds")
+    private EntityManager em;
+
     @Inject
-    private ServletContext sc;
-
-    private Connection conn;
-
-    public ToDoRepository() {
-    }
+    private UserTransaction ut;
 
     @PostConstruct
     public void init() {
-        logger.info("Initializing application");
-
-        String jdbcConnectionString = sc.getInitParameter("jdbcConnectionString");
-        String username = sc.getInitParameter("postgres");
-        String password = sc.getInitParameter("philipp");
-
-        try {
-            Connection conn = DriverManager.getConnection(jdbcConnectionString, username, password);
-
-            if (this.findAll().isEmpty()) {
+             if (this.findAll().isEmpty()) {
+                 try {
+                 ut.begin();
                 this.insert(new ToDo(-1L, "First", LocalDate.now()));
                 this.insert(new ToDo(-1L, "Second", LocalDate.now().plusDays(1)));
                 this.insert(new ToDo(-1L, "Third", LocalDate.now().plusDays(2)));
+                ut.commit();
+            } catch (Exception e) {
+                     try {
+                         ut.rollback();
+                     } catch (SystemException s) {
+                         logger.error("", s);
+                     }
+                 }
             }
-            createTableIfNotExists(conn);
-        } catch (SQLException ex) {
-            logger.error("", ex);
-            throw new RuntimeException(ex);
-        }
-
     }
 
-
-    public void insert(ToDo toDo) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement(
-                "insert into todos(description, targetDate) values (?, ?);")) {
-            stmt.setString(1, toDo.getDescription());
-            stmt.setDate(2, Date.valueOf(toDo.getTargetDate()), Calendar.getInstance());
-            stmt.execute();
-        }
+    @Transactional
+    public void insert(ToDo toDo) {
+         em.persist(toDo);
     }
 
-    public void update(ToDo toDo) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement(
-                "update todos set description = ?, targetDate = ? where id = ?;")) {
-            stmt.setString(1, toDo.getDescription());
-            stmt.setDate(2, Date.valueOf(toDo.getTargetDate()), Calendar.getInstance());
-            stmt.setLong(3, toDo.getId());
-            stmt.execute();
-        }
+    @Transactional
+    public void update(ToDo toDo) {
+       em.merge(toDo);
     }
 
-    public void delete(long id) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement(
-                "delete from todos where id = ?;")) {
-            stmt.setLong(1, id);
-            stmt.execute();
-        }
+    @Transactional
+    public void delete(long id)  {
+       ToDo toDo=em.find(ToDo.class, id);
+       if(toDo != null) em.remove(toDo);
     }
 
-    public ToDo findById(long id) throws SQLException {
-        try (PreparedStatement stmt = conn.prepareStatement(
-                "select id, description, targetDate from todos where id = ?")) {
-            stmt.setLong(1, id);
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                return new ToDo(rs.getLong(1), rs.getString(2), rs.getDate(3, Calendar.getInstance()).toLocalDate());
-            }
-        }
-        return new ToDo(-1L, "", null);
+    @Transactional
+    public List<ToDo> findByDescr(String description) {
+        List<ToDo> list = em.createQuery("SELECT c FROM ToDo c WHERE c.description LIKE :description").setParameter("description", description).getResultList();
+        return list;
     }
 
-    public List<ToDo> findAll() throws SQLException {
-        List<ToDo> res = new ArrayList<>();
-        try (Statement stmt = conn.createStatement()) {
-            ResultSet rs = stmt.executeQuery("select id, description, targetDate from todos");
-
-            while (rs.next()) {
-                res.add(new ToDo(rs.getLong(1), rs.getString(2), rs.getDate(3, Calendar.getInstance()).toLocalDate()));
-            }
-        }
-        return res;
+    @Transactional
+    public List<ToDo> getToDos(){
+        Query query = em.createNamedQuery("ToDo.findAll", ToDo.class);
+        List<ToDo> result = query.getResultList();
+        return result;
     }
 
-    private void createTableIfNotExists(Connection conn) throws SQLException {
-        try (Statement stmt = conn.createStatement()) {
-            stmt.execute("create table if not exists todos (\n" +
-                    "\tid int auto_increment primary key,\n" +
-                    "    description varchar(25),\n" +
-                    "    targetDate date \n" +
-                    ");");
-        }
+//    @Transactional
+//    public void view(){
+//        CriteriaBuilder cb = em.getCriteriaBuilder();
+//        CriteriaQuery<ToDo> query = cb.createQuery(ToDo.class);
+//        Root<ToDo> c = query.from(ToDo.class);
+//        ParameterExpression<Integer> p = cb.parameter(Integer.class);
+//        Predicate condition = cb.equal(c.get(ToDo.getTargetDate()), p);
+//        query.select(c).where(condition);
+//        TypedQuery<ToDo> q = em.createQuery(query);
+//        q.setParameter(p, 1);
+//        List<ToDo> todos = q.getResultList();
+//    }
+
+    public ToDo findById(long id)  {
+       return em.find(ToDo.class, id);
+    }
+
+    public List<ToDo> findAll() {
+        return em.createQuery("from ToDo", ToDo.class).getResultList();
     }
 }

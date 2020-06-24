@@ -1,9 +1,12 @@
 D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\controllers\ProductController.java
+D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\OrderRepository.java
 D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\controllers\CategoryController.java
 D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\controllers\TodoController.java
 D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\ToDoRepository.java
 D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\Product.java
 D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\CategoryRepository.java
 D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\ProductRepository.java
+D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\controllers\OrderController.java
 D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\Category.java
 D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\ToDo.java
+D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\Order.java

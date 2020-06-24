@@ -6,6 +6,7 @@ import persist.Product;
 import persist.ProductRepository;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -20,6 +21,12 @@ public class CategoryController implements Serializable {
     private CategoryRepository categoryRepository;
 
     private Category category;
+
+    private List<Category> categories;
+
+    public void preLoadCategories(ComponentSystemEvent componentSystemEvent){
+        this.categories=categoryRepository.findAll();
+    }
 
     public CategoryRepository getCategoryRepository() {
         return categoryRepository;
@@ -43,7 +50,7 @@ public class CategoryController implements Serializable {
     }
 
     public List<Category> getAllCategory() throws SQLException {
-        return categoryRepository.findAll();
+        return categories;
     }
 
     public String editCategory(Category category){

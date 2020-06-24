@@ -17,29 +17,34 @@
 </h:head>
 
 <h:body>
+    <f:event listener="#{orderController.preLoadTodos}" type="preRenderView"></f:event>
 
     <div class="container">
         <div class="row py-2">
             <h:form id="orderForm">
 
                 <div class="col-12">
-                    <h:dataTable value="#{productController.allProduct}" var="product"
+                    <h:dataTable value="#{orderController.allOrder}" var="order"
                                  styleClass="table table-bordered my-2">
                         <h:column>
                             <f:facet name="header">ID</f:facet>
-                            #{product.id}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">CATEGORY</f:facet>
-                            #{product.category}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">TITLE</f:facet>
-                            #{product.title}
+                            #{order.id}
                         </h:column>
                         <h:column>
                             <f:facet name="header">PRICE</f:facet>
-                            #{product.price}
+                            #{order.price}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">PHONE</f:facet>
+                            #{order.phone}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">ADDRESS</f:facet>
+                            #{order.address}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">STATUS</f:facet>
+                            #{order.status}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Actions</f:facet>
@@ -53,9 +58,10 @@
                         <thead>
                         <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Price</th>
+                            <th scope="col">PRICE</th>
+                            <th scope="col">PHONE</th>
+                            <th scope="col">ADDRESS</th>
+                            <th scope="col">STATUS</th>
                             <th scope="col">Actions</th>
                         </tr>
                         </thead>

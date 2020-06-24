@@ -1,9 +1,22 @@
 package persist;
 
+
+import javax.persistence.*;
+
+@Table(name="products")
+@Entity
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(length = 4096, nullable = false)
     private String category;
+
+    @Column(length = 4096, nullable = false)
     private String title;
+
+    @Column(nullable = false)
     private Double price;
 
     public Long getId() {

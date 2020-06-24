@@ -5,6 +5,7 @@ import persist.ToDo;
 import persist.ToDoRepository;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -19,6 +20,12 @@ public class TodoController implements Serializable {
     private ToDoRepository toDoRepository;
 
     private ToDo todo;
+
+    private List<ToDo> todos;
+
+    public void preLoadTodos(ComponentSystemEvent componentSystemEvent){
+          this.todos=toDoRepository.findAll();
+    }
 
     public ToDoRepository getToDoRepository() {
         return toDoRepository;
@@ -42,7 +49,7 @@ public class TodoController implements Serializable {
     }
 
     public List<ToDo> getAllTodo() throws SQLException {
-         return toDoRepository.findAll();
+         return todos;
     }
 
     public String editTodo(ToDo todo){

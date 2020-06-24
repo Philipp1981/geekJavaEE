@@ -6,6 +6,7 @@ import persist.ProductRepository;
 import persist.ToDo;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -20,6 +21,12 @@ public class ProductController implements Serializable{
     private ProductRepository productRepository;
 
     private Product product;
+
+    private List<Product> products;
+
+    public void preLoadProducts(ComponentSystemEvent componentSystemEvent){
+        this.products=productRepository.findAll();
+    }
 
     public ProductRepository getProductRepository() {
         return productRepository;
@@ -43,7 +50,7 @@ public class ProductController implements Serializable{
     }
 
     public List<Product> getAllProduct() throws SQLException {
-        return productRepository.findAll();
+        return products;
     }
 
     public String editProduct(Product product){

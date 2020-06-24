@@ -18,7 +18,7 @@
 
 <h:body>
 
-<!--<jsp:include page="navigation.jsp"/>-->
+    <f:event listener="#{productController.preLoadTodos}" type="preRenderView"></f:event>
 
 
 <div class="container">

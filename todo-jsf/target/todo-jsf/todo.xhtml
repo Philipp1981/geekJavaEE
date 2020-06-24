@@ -19,7 +19,7 @@
 
 <h:body>
 
-<!--<jsp:include page="navigation.jsp"/>-->
+<f:event listener="#{todoController.preLoadTodos}" type="preRenderView"></f:event>
 
 <div class="container">
     <div class="row py-2">

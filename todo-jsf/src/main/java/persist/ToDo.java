@@ -1,13 +1,23 @@
 package persist;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class ToDo {
 
+@Table(name="todos")
+@Entity
+@NamedQuery(name = "ToDo.findAll", query = "SELECT t FROM ToDo t")
+public class ToDo implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 4096, nullable = false)
     private String description;
 
+    @Column(nullable = false)
     private LocalDate targetDate;
 
     public ToDo() {
@@ -43,3 +53,7 @@ public class ToDo {
         this.targetDate = targetDate;
     }
 }
+
+//
+// D:\wildfly-20.0.0.Final\bin\jboss-cli.bat --connect --file=todo-jsf\mysql-driver.cli
+ //       D:\Java EE\geekJavaEE>D:\Методички\wildfly-20.0.0.Final\bin\jboss-cli.bat --connect --file=todo-jsf\datasource.cli
