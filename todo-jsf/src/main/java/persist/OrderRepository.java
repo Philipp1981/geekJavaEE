@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,8 +16,7 @@ import javax.transaction.Transactional;
 import javax.transaction.UserTransaction;
 import java.util.List;
 
-@ApplicationScoped
-@Named
+@Stateless
 public class OrderRepository {
     private static final Logger logger = LoggerFactory.getLogger(ToDoRepository.class);
 

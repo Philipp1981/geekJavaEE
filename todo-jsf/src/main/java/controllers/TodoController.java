@@ -1,9 +1,14 @@
 package controllers;
 
 
+import persist.Category;
+import persist.CategoryRepository;
 import persist.ToDo;
 import persist.ToDoRepository;
+import services.ToDoDto;
+import services.ToDoServiceLocal;
 
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.event.ComponentSystemEvent;
 import javax.inject.Inject;
@@ -16,55 +21,57 @@ import java.util.List;
 @Named
 public class TodoController implements Serializable {
 
-    @Inject
-    private ToDoRepository toDoRepository;
+    @EJB
+    private ToDoServiceLocal toDoService;
 
-    private ToDo todo;
+    @EJB
+    private CategoryRepository categoryRepository;
 
-    private List<ToDo> todos;
+    private List<ToDoDto> toDoDtos;
 
-    public void preLoadTodos(ComponentSystemEvent componentSystemEvent){
-          this.todos=toDoRepository.findAll();
+    private ToDoDto toDoDto;
+
+    public void preloadTodos(ComponentSystemEvent componentSystemEvent) {
+        this.toDoDtos = toDoService.findAll();
     }
 
-    public ToDoRepository getToDoRepository() {
-        return toDoRepository;
+    public ToDoDto getToDoDto() {
+        return toDoDto;
     }
 
-    public void setToDoRepository(ToDoRepository toDoRepository) {
-        this.toDoRepository = toDoRepository;
+    public void setToDo(ToDoDto toDoDto) {
+        this.toDoDto = toDoDto;
     }
 
-    public ToDo getTodo() {
-        return todo;
+    public String createToDo() {
+        this.toDoDto = new ToDoDto();
+        return "/todo.xhtml?faces-redirect=true";
     }
 
-    public void setToDo(ToDo todo) {
-        this.todo = todo;
+    public List<ToDoDto> getAllTodos() {
+        return toDoDtos;
     }
 
-    public String createTodo(){
-       this.todo=new ToDo();
-       return "todo.xhtml?faces-redirect=true";
+    public String editTodo(ToDoDto toDoDto) {
+        this.toDoDto = toDoDto;
+        return "/todo.xhtml?faces-redirect=true";
     }
 
-    public List<ToDo> getAllTodo() throws SQLException {
-         return todos;
+    public void deleteTodo(ToDoDto toDoDto) {
+        toDoService.delete(toDoDto.getId());
     }
 
-    public String editTodo(ToDo todo){
-        this.todo=new ToDo();
-        return "todo.xhtml?faces-redirect=true";
+    public String saveTodo() {
+        if (toDoDto.getId() == null) {
+            toDoService.insert(toDoDto);
+        } else {
+            toDoService.update(toDoDto);
+        }
+        return "/index.xhtml?faces-redirect=true";
     }
 
-    public void deleteTodo(ToDo todo) throws SQLException {
-        toDoRepository.delete(todo.getId());
+    public List<Category> getAllCategories() {
+        return categoryRepository.findAll();
     }
-
-    public String saveTodo(ToDo todo) throws SQLException {
-        if(todo.getId()==null) toDoRepository.insert(todo);
-        else toDoRepository.update(todo);
-        return "index.xhtml?faces-redirect=true";
-    }
-
 }
+

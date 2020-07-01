@@ -20,13 +20,17 @@ public class ToDo implements Serializable {
     @Column(nullable = false)
     private LocalDate targetDate;
 
+    @ManyToOne
+    private Category category;
+
     public ToDo() {
     }
 
-    public ToDo(Long id, String description, LocalDate targetDate) {
+    public ToDo(Long id, String description, LocalDate targetDate, Category category) {
         this.id = id;
         this.description = description;
         this.targetDate = targetDate;
+        this.category = category;
     }
 
     public Long getId() {
@@ -52,8 +56,16 @@ public class ToDo implements Serializable {
     public void setTargetDate(LocalDate targetDate) {
         this.targetDate = targetDate;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 }
 
-//
+//C:\Program Files\MySQL\MySQL Server 5.7\bin\mysqld
 // D:\wildfly-20.0.0.Final\bin\jboss-cli.bat --connect --file=todo-jsf\mysql-driver.cli
- //       D:\Java EE\geekJavaEE>D:\Методички\wildfly-20.0.0.Final\bin\jboss-cli.bat --connect --file=todo-jsf\datasource.cli
+ //       D   C:\wildfly-20.0.0.Final\bin\jboss-cli.bat --connect --file=todo-jsf\datasource.cli

@@ -11,6 +11,7 @@
         <module>first_app</module>
         <module>todo-jsp</module>
         <module>todo-jsf</module>
+        <module>client</module>
     </modules>
     <packaging>pom</packaging>
 

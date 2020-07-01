@@ -1,6 +1,5 @@
 <html lang="en"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 
@@ -13,13 +12,15 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"/>
-    <title>Hello, world!</title>
+    <title>ToDo list application</title>
 </h:head>
 
 <h:body>
 
+    <f:event listener="#{categoryController.preloadcategories}" type="preRenderView"/>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">ToDo</a>
+        <a class="navbar-brand" href="#">Product</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <h:link styleClass="nav-link" value="ToDo" outcome="index"/>
+                    <h:link styleClass="nav-link" value="Product" outcome="index"/>
                 </li>
                 <li class="nav-item active">
                     <h:link styleClass="nav-link" value="Category" outcome="categories"/>
@@ -43,39 +44,35 @@
 
     <div class="container">
         <div class="row py-2">
-            <div class="col-12">
-                <h:form id="todoForm">
+            <h:form id="categoryForm">
+                <div class="col-12">
+                    <h:commandButton value="Add Category" styleClass="btn btn-primary"
+                                     action="#{categoryController.createCategory()}"/>
+                </div>
 
-                    <div class="form-group">
-                        <h:outputLabel value="Description"/>
-                        <h:inputText styleClass="form-control" id="description"
-                                     value="#{todoController.toDo.description}"
-                                     placeholder="Enter description"/>
-                    </div>
-
-                    <div class="form-group">
-                        <h:outputLabel value="Target date"/>
-                        <h:inputText p:type="date" styleClass="form-control" id="targetDate"
-                                     value="#{todoController.toDo.targetDate}">
-                            <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
-                        </h:inputText>
-                    </div>
-
-                    <div class="form-group">
-                        <h:outputLabel value="Category"/>
-                        <h:selectOneListbox size="1" styleClass="form-control" id="todoCategory"
-                                            value="#{todoController.toDo.categoryId}">
-                            <f:selectItems value="#{todoController.allCategories}"
-                                           var="cat"
-                                           itemValue="#{cat.id}"
-                                           itemLabel="#{cat.name}"
-                                           itemLabelEscaped="true"/>
-                        </h:selectOneListbox>
-                    </div>
-
-                    <h:commandButton value="Submit" styleClass="btn btn-primary" action="#{todoController.saveTodo()}"/>
-                </h:form>
-            </div>
+                <div class="col-12">
+                    <h:dataTable value="#{categoryController.allCategories}" var="todo"
+                                 styleClass="table table-bordered my-2">
+                        <h:column>
+                            <f:facet name="header">Id</f:facet>
+                            #{todo.id}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            #{todo.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Action</f:facet>
+                            <h:commandButton value="Edit" styleClass="btn btn-success"
+                                             action="#{categoryController.editCategory(todo)}"/>
+                            <h:commandButton value="Delete" styleClass="btn btn-danger"
+                                             action="#{categoryController.deleteCategory(todo)}">
+                                <f:ajax event="click" render="categoryForm"/>
+                            </h:commandButton>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
         </div>
     </div>
 
@@ -90,7 +87,5 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
-
 </h:body>
-
 </html>
