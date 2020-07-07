@@ -12,6 +12,7 @@
         <module>todo-jsp</module>
         <module>todo-jsf</module>
         <module>client</module>
+        <module>ws-client</module>
     </modules>
     <packaging>pom</packaging>
 

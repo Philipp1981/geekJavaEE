@@ -51,7 +51,7 @@ public class ToDoRepository {
     }
 
     public ToDoDto findToDoDtoById(long id) {
-        return em.createQuery("select new services.ToDoDto(t.id, t.description, t.targetDate, t.category.id, t.category.name) from ToDo t where t.id = :id", ToDoDto.class)
+        return em.createQuery("select new services.ToDoDto(t.id, t.description, t.category.id, t.category.name) from ToDo t where t.id = :id", ToDoDto.class)
                 .setParameter("id", id)
                 .getSingleResult();
     }
@@ -61,7 +61,7 @@ public class ToDoRepository {
     }
 
     public List<ToDoDto> findAllToDoDto() {
-        return em.createQuery("select new services.ToDoDto(t.id, t.description, t.targetDate, t.category.id, t.category.name) from ToDo t", ToDoDto.class)
+        return em.createQuery("select new services.ToDoDto(t.id, t.description, t.category.id, t.category.name) from ToDo t", ToDoDto.class)
                 .getResultList();
     }
 }

@@ -16,9 +16,9 @@ public class ToDo implements Serializable {
 
     @Column(length = 4096, nullable = false)
     private String description;
-
-    @Column(nullable = false)
-    private LocalDate targetDate;
+//
+//    @Column(nullable = false)
+//    private LocalDate targetDate;
 
     @ManyToOne
     private Category category;
@@ -26,10 +26,9 @@ public class ToDo implements Serializable {
     public ToDo() {
     }
 
-    public ToDo(Long id, String description, LocalDate targetDate, Category category) {
+    public ToDo(Long id, String description, Category category) {
         this.id = id;
         this.description = description;
-        this.targetDate = targetDate;
         this.category = category;
     }
 
@@ -48,14 +47,14 @@ public class ToDo implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public LocalDate getTargetDate() {
-        return targetDate;
-    }
-
-    public void setTargetDate(LocalDate targetDate) {
-        this.targetDate = targetDate;
-    }
+//
+//    public LocalDate getTargetDate() {
+//        return targetDate;
+//    }
+//
+//    public void setTargetDate(LocalDate targetDate) {
+//        this.targetDate = targetDate;
+//    }
 
     public Category getCategory() {
         return category;

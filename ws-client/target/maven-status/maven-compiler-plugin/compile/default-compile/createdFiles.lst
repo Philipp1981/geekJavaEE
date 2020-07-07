@@ -1,0 +1,9 @@
+service/FindByIdWs.class
+service/ToDoService.class
+service/FindAllWs.class
+service/TodoServiceWs.class
+service/FindByIdWsResponse.class
+service/ObjectFactory.class
+service/package-info.class
+service/ToDoReprWs.class
+service/FindAllWsResponse.class

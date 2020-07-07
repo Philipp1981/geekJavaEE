@@ -1,18 +1,18 @@
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\controllers\ProductController.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\OrderRepository.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\controllers\CategoryController.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\controllers\TodoController.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\ToDoRepository.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\Product.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\services\ToDoServiceImpl.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\ProductRepository.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\controllers\OrderController.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\Category.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\Order.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\services\CartService.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\controllers\CartController.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\CategoryRepository.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\services\ToDoServiceLocal.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\services\ToDoServiceRemote.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\persist\ToDo.java
-D:\Методички\Java EE\geekJavaEE\todo-jsf\src\main\java\services\ToDoDto.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/service/ToDoServiceRemote.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/jms/JmsToDoBean.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/persist/ToDoCategory.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/persist/ToDoCategoryRepository.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/controller/ToDoCategoryController.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/rest/JaxRsApplication.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/service/ToDoServiceLocal.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/controller/CartController.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/service/ToDoServiceImpl.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/controller/TodoController.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/service/TodoServiceWs.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/service/ToDoReprWs.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/rest/ToDoServiceRs.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/persist/ToDo.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/controller/ToDoCategoryConverter.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/service/ToDoRepr.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/service/CartService.java
+/Users/macbook/IdeaProjects/geek-java-ee-lessons-20/todo-jsf/src/main/java/persist/ToDoRepository.java

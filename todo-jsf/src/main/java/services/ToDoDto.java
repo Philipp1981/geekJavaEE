@@ -9,7 +9,7 @@ public class ToDoDto implements Serializable {
 
     private String description;
 
-    private LocalDate targetDate;
+//    private LocalDate targetDate;
 
     private Long categoryId;
 
@@ -31,13 +31,13 @@ public class ToDoDto implements Serializable {
         this.description = description;
     }
 
-    public LocalDate getTargetDate() {
-        return targetDate;
-    }
-
-    public void setTargetDate(LocalDate targetDate) {
-        this.targetDate = targetDate;
-    }
+//    public LocalDate getTargetDate() {
+//        return targetDate;
+//    }
+//
+//    public void setTargetDate(LocalDate targetDate) {
+//        this.targetDate = targetDate;
+//    }
 
     public Long getCategoryId() {
         return categoryId;
@@ -58,10 +58,9 @@ public class ToDoDto implements Serializable {
     public ToDoDto() {
     }
 
-    public ToDoDto(Long id, String description, LocalDate targetDate, Long categoryId, String categoryName) {
+    public ToDoDto(Long id, String description, Long categoryId, String categoryName) {
         this.id = id;
         this.description = description;
-        this.targetDate = targetDate;
         this.categoryId = categoryId;
         this.categoryName = categoryName;
     }

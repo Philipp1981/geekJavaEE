@@ -10,6 +10,7 @@
         <module name="first_app" />
         <module name="todo-jsf" />
         <module name="todo-jsp" />
+        <module name="ws-client" />
       </profile>
     </annotationProcessing>
   </component>
