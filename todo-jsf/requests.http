@@ -1,0 +1,13 @@
+GET http://localhost:8080/todo-jsf/api/todo/all
+
+###
+
+POST http://localhost:8080/todo-jsf/api/todo
+Content-Type: application/json
+
+  {
+    "categoryId": 3,
+    "categoryName": "Activity",
+    "description": "RX-RS homework",
+    "targetDate": "2020-06-25"
+  }
